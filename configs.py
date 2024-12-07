@@ -3,9 +3,9 @@ from yacs.config import CfgNode
 
 cfg = CfgNode()
 cfg.reproduce = False
-cfg.root_dir = '../PrideMM'
-cfg.img_folder = '../Data/Images'
-cfg.info_file = '/Users/pratheeshjp/Desktop/MemeCLIP-main/PrideMM/PrideMM.csv'
+cfg.root_dir = ''
+cfg.img_folder = 'PrideMM/Images'
+cfg.info_file = '/Users/pratheeshjp/Desktop/test/PrideMM/PrideMM.csv'
 cfg.checkpoint_path = os.path.join(cfg.root_dir, 'checkpoints')
 cfg.checkpoint_file = os.path.join(cfg.checkpoint_path,'model.ckpt')
 
@@ -29,7 +29,7 @@ elif cfg.label == 'target':
 elif cfg.label == 'stance':
     cfg.class_names = ['Neutral', 'Support', 'Oppose']
   
-cfg.batch_size = 16
+cfg.batch_size = 32
 cfg.image_size = 224
 cfg.num_mapping_layers = 1
 cfg.unmapped_dim = 768
@@ -37,7 +37,7 @@ cfg.map_dim = 1024
 cfg.num_pre_output_layers = 1
 cfg.drop_probs = [0.1, 0.4, 0.2]
 cfg.lr = 1e-4
-cfg.max_epochs = 10
+cfg.max_epochs = 1
 cfg.weight_decay = 1e-4
 cfg.num_classes = len(cfg.class_names)
 cfg.scale = 30 

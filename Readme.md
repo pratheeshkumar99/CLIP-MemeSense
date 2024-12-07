@@ -24,13 +24,11 @@ Used PrideMM dataset, a collection of memes annotated for various tasks such as 
 
 # Directory Organization
 ```
-Data/
+PrimeMM/
 ├── Images/
 │   ├── meme1.jpg
 │   ├── meme2.jpg
 │   └── ...
-├── checkpoints/
-│   └── model.ckpt
 └── PrideMM.csv
 ```
 # Data Format
