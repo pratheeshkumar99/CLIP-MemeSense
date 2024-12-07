@@ -2,6 +2,7 @@
 
 ## Table of Contents
 1. [Overview](#overview)
+2. [Architectural-Overview](#architectural-overview)
 2. [Architectural Details](#architectural-details)
 3. [Step-by-Step Data Flow](#step-by-step-data-flow)
 4. [Classification Mechanism](#classification-mechanism)
@@ -14,6 +15,24 @@ MemeCLIP is a multimodal framework that leverages CLIP's pre-trained knowledge f
 - Hate Speech Detection (Binary)
 - Target Classification (4 classes)
 - Stance Classification (3 classes)
+
+
+## Architectural Overview
+
+To provide a clear visual understanding of the MemeCLIP framework, the following diagram illustrates the step-by-step data flow and key components of the architecture:
+
+![MemeCLIP Architecture](Image/memeclip_architecture.png)
+
+#### Key Components Highlighted:
+
+- **CLIP Encoders**: Processes the input image and text through separate encoders, converting them into uniform feature vectors.
+- **Feature Projection**: Enhances the dimensionality of the initial features to prepare them for more complex transformations.
+- **Adapters**: Modifies the projected features to fine-tune them towards specific tasks.
+- **Residual Integration**: Combines the original and adapted features using a weighted approach to maintain both novelty and integrity of the pre-trained features.
+- **Feature Fusion and Normalization**: Fuses and normalizes the image and text features to ensure they are on a comparable scale.
+- **Cosine Classifier**: Utilizes the cosine similarity between the fused features and class weights to determine the class labels.
+- **Loss Computation**: The final prediction step where the model's output is evaluated against true labels to compute the loss.
+
 
 ## Architectural Details
 
