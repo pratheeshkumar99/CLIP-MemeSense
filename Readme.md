@@ -2,7 +2,7 @@
 
 ## Table of Contents
 1. [Overview](#overview)
-2. [Dataset]
+2. [Dataset](#dataset)
 3. [Architectural-Overview](#architectural-overview)
 4. [Architectural Details](#architectural-details)
 5. [Step-by-Step Data Flow](#step-by-step-data-flow)
@@ -18,7 +18,7 @@ MemeCLIP is a multimodal framework that leverages OpenAI CLIP's pre-trained know
 - Stance Classification (3 classes)
 
 
-# Dataset
+## Dataset
 
 Used PrideMM dataset, a collection of memes annotated for various tasks such as hate speech detection, target identification, stance classification, and humor recognition.
 
@@ -33,7 +33,7 @@ CopyPrideMM/
 │   └── model.ckpt
 └── PrideMM.csv
 ```
-## Data Format
+# Data Format
 
 The `PrideMM.csv` file contains rich annotations with the following columns:
 
@@ -54,7 +54,7 @@ The `PrideMM.csv` file contains rich annotations with the following columns:
 |        | - 1: Support                                       |
 |        | - 2: Oppose                                        |
 
-## Class Distribution
+# Class Distribution
 
 The PrideMM dataset consists of 5,063 samples for most tasks, with the following distribution:
 
