@@ -101,7 +101,7 @@ Notable imbalance favoring humorous content.
 
 Diagram illustrating a step-by-step data flow and key components of the architecture:
 
-![MemeSense Architecture](Img/memeclip_architecture.png)
+![MemeSense Architecture](Images/memeclip_architecture.png)
 
 #### Key Components:
 
