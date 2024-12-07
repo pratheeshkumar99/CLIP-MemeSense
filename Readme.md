@@ -11,7 +11,7 @@
 8. [Evaluation](#evaluation)
 
 ## Overview
-MemeSense is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for comprehensive meme analysis. It was support multiple classification tasks:
+MemeSense is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for Meme analysis. It supports multiple classification tasks:
 - Humor Detection (Binary)
 - Hate Speech Detection (Binary)
 - Target Classification (4 classes)
@@ -101,7 +101,7 @@ Notable imbalance favoring humorous content.
 
 ## Architectural Overview
 
-To provide a clear visual understanding of the MemeSense framework, the following diagram illustrates the step-by-step data flow and key components of the architecture:
+Diagram illustrating a step-by-step data flow and key components of the architecture:
 
 ![MemeSense Architecture](Img/memeclip_architecture.png)
 
@@ -463,12 +463,12 @@ Why This Approach:
 
 ### Example Classification Flow
 ```
-Let's consider a humor detection example using the architecture described earlier.
+Let's consider a humor detection example
 
 1. Get Fused Features:
 
    The model has processed the input image and text through the CLIP encoders, linear projection layers, adapter modules, residual integration, and feature normalization.
-   The final output is a 1024-dimensional fused feature vector that captures information from both the visual and textual modalities. For this example, let's say the fused feature vector is: [0.1, 0.3, ..., 0.2].
+   The final output is a 1024-dimensional fused feature vector that captures information from both the visual and textual modalities. For instance fused feature vector is: [0.1, 0.3, ..., 0.2].
 
 2. Compute Similarity with Class Weights:
 
@@ -499,7 +499,7 @@ Let's consider a humor detection example using the architecture described earlie
    Loss = cross_entropy(logits, labels)
    The cross-entropy loss will handle the conversion of the logits to class probabilities internally, without the need to apply the softmax function explicitly.
 
-   This approach allows the model to optimize the classification task directly on the scaled logits, which have been sharpened by the temperature scaling to produce more confident and well-calibrated predictions.
+   This  allows the model to optimize the classification task directly on the scaled logits, which have been sharpened by the temperature scaling to produce more confident predictions.
 
 ```
 
@@ -525,14 +525,14 @@ Loss = -log(P(correct_class))
 
 # Evaluation 
 
-The model's performance is evaluated using the following metrics:
+The model's performance was evaluated using the following metrics:
 - Accuracy: The percentage of correctly classified samples.
 - Area Under the Receiver Operating Characteristic curve (AUC): Measures the ability of the model to distinguish between classes. A higher AUC indicates better performance.
 - F1 Score (macro-averaged): The harmonic mean of precision and recall, providing a balanced measure of the model's performance. The macro-average computes the metric independently for each class and then takes the average, treating all classes equally.
 
 ## Performance Metrics
 
-The following table summarizes the performance of the MemeCLIP model on different tasks:
+The following table summarizes the performance of the MemeSense model on different tasks:
 
 | Task                 | Accuracy | AUC     | F1 Score |
 |----------------------|----------|---------|----------|
