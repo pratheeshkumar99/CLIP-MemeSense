@@ -18,3 +18,8 @@ code/lightning_logs/version_5/metrics.csv
 code/lightning_logs/version_6/hparams.yaml
 code/lightning_logs/version_6/metrics.csv
 PrideMM/.DS_Store
+code/lightning_logs/version_9/hparams.yaml
+code/lightning_logs/version_7/hparams.yaml
+code/lightning_logs/version_10/hparams.yaml
+code/lightning_logs/version_8/hparams.yaml
+code/requirements.txt

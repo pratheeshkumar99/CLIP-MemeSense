@@ -4,7 +4,7 @@ from yacs.config import CfgNode
 cfg = CfgNode()
 cfg.reproduce = False
 cfg.root_dir = '../PrideMM'
-cfg.img_folder = '../PrideMM/Images'
+cfg.img_folder = '../Data/Images'
 cfg.info_file = '/Users/pratheeshjp/Desktop/MemeCLIP-main/PrideMM/PrideMM.csv'
 cfg.checkpoint_path = os.path.join(cfg.root_dir, 'checkpoints')
 cfg.checkpoint_file = os.path.join(cfg.checkpoint_path,'model.ckpt')

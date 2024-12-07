@@ -31,12 +31,14 @@ def main(cfg):
     collator = Custom_Collator(cfg)
 
     train_loader = DataLoader(dataset_train, batch_size=cfg.batch_size, shuffle=True,
-                                  collate_fn=collator, num_workers=0)
-    val_loader = DataLoader(dataset_test, batch_size=cfg.batch_size, collate_fn=collator, num_workers=0)
+                                  collate_fn=collator)
+    val_loader = DataLoader(dataset_test, batch_size=cfg.batch_size, collate_fn=collator)
     test_loader = DataLoader(dataset_test, batch_size=cfg.batch_size,
-                                 collate_fn=collator, num_workers=0)
+                                 collate_fn=collator)
     
     model = create_model(cfg)
+
+    print(model)
 
     num_params = {f'param_{n}': p.numel() for n, p in model.named_parameters() if p.requires_grad}
 
