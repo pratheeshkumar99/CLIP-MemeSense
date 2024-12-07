@@ -38,9 +38,11 @@ def main(cfg):
     
     model = create_model(cfg)
 
-    print(model)
+    # print(model)
 
     num_params = {f'param_{n}': p.numel() for n, p in model.named_parameters() if p.requires_grad}
+
+    print("Number of parameters:", sum(num_params.values()))
 
     monitor = "val/auroc"
     checkpoint_callback = ModelCheckpoint(dirpath=cfg.checkpoint_path, filename='model',

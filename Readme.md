@@ -8,10 +8,10 @@
 5. [Step-by-Step Data Flow](#step-by-step-data-flow)
 6. [Classification Mechanism](#classification-mechanism)
 7. [Training Process](#training-process)
-8. [Implementation Details](#implementation-details)
+8. [Evaluation](#evaluation)
 
 ## Overview
-MemeSense is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for comprehensive meme analysis. It supports multiple classification tasks:
+MemeSense is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for comprehensive meme analysis. It was support multiple classification tasks:
 - Humor Detection (Binary)
 - Hate Speech Detection (Binary)
 - Target Classification (4 classes)
@@ -24,7 +24,7 @@ Used PrideMM dataset, a collection of memes annotated for various tasks such as 
 
 # Directory Organization
 ```
-CopyPrideMM/
+Data/
 ├── Images/
 │   ├── meme1.jpg
 │   ├── meme2.jpg
@@ -41,7 +41,7 @@ The `PrideMM.csv` file contains rich annotations with the following columns:
 |--------|----------------------------------------------------|
 | name   | Image filename (str)                               |
 | text   | Meme text content (str)                            |
-| split  | Dataset split designation (str: 'train'/'val'/'test') |
+| split  | Dataset split designation (str: 'train'/'val') |
 | humour | Binary humor label (int: 0/1)                     |
 | hate   | Binary hate speech label (int: 0/1)                |
 | target | Target classification (int: 0-3)                   |
@@ -105,7 +105,7 @@ To provide a clear visual understanding of the MemeSense framework, the followin
 
 ![MemeSense Architecture](Img/memeclip_architecture.png)
 
-#### Key Components Highlighted:
+#### Key Components:
 
 - **CLIP Encoders**: Processes the input image and text through separate encoders, converting them into uniform feature vectors.
 - **Feature Projection**: Enhances the dimensionality of the initial features to prepare them for more complex transformations.
@@ -503,13 +503,46 @@ Let's consider a humor detection example using the architecture described earlie
 
 ```
 
-## Training Process
+# Training Process
+
+The MemeSense model contains a total of 3,675,136 parameters. The model was trained separately on each task: hate speech detection, target identification, stance classification, and humor recognition.
+
+### Dataset
+The dataset was split into training and validation sets:
+- Training set: 4,666 images
+- Validation set: 397 images
 
 ### Loss Function
+The model was trained using Cross Entropy Loss with mean reduction, defined as:
 ```python
-Cross Entropy Loss with mean reduction
 Loss = -log(P(correct_class))
 ```
+### Training Details
+- Total epochs: 10
+- Batch size: 16
+- Learning rate: 1e-4
+- Weight decay: 1e-4
+
+# Evaluation 
+
+The model's performance is evaluated using the following metrics:
+- Accuracy: The percentage of correctly classified samples.
+- Area Under the Receiver Operating Characteristic curve (AUC): Measures the ability of the model to distinguish between classes. A higher AUC indicates better performance.
+- F1 Score (macro-averaged): The harmonic mean of precision and recall, providing a balanced measure of the model's performance. The macro-average computes the metric independently for each class and then takes the average, treating all classes equally.
+
+## Performance Metrics
+
+The following table summarizes the performance of the MemeCLIP model on different tasks:
+
+| Task                 | Accuracy | AUC     | F1 Score |
+|----------------------|----------|---------|----------|
+| Hate Speech Detection| 76.06%   | 84.52%  | 75.09%   |
+| Target Identification| 66.12%   | 81.66%  | 58.65%   |
+| Stance Classification| 62.00%   | 80.11%  | 57.98%   |
+| Humor Recognition    | 80.27%   | 85.59%  | 77.21%   |
+
+
+
 
 <!-- Would you like me to continue with:
 1. Implementation details?
