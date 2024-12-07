@@ -1,4 +1,4 @@
-# MemeCLIP: A Multimodal Framework for Meme Analysis
+# MemeSense: A Multimodal Framework for Meme Analysis
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -11,7 +11,7 @@
 8. [Implementation Details](#implementation-details)
 
 ## Overview
-MemeCLIP is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for comprehensive meme analysis. It supports multiple classification tasks:
+MemeSense is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for comprehensive meme analysis. It supports multiple classification tasks:
 - Humor Detection (Binary)
 - Hate Speech Detection (Binary)
 - Target Classification (4 classes)
@@ -101,9 +101,9 @@ Notable imbalance favoring humorous content.
 
 ## Architectural Overview
 
-To provide a clear visual understanding of the MemeCLIP framework, the following diagram illustrates the step-by-step data flow and key components of the architecture:
+To provide a clear visual understanding of the MemeSense framework, the following diagram illustrates the step-by-step data flow and key components of the architecture:
 
-![MemeCLIP Architecture](Img/memeclip_architecture.png)
+![MemeSense Architecture](Img/memeclip_architecture.png)
 
 #### Key Components Highlighted:
 
