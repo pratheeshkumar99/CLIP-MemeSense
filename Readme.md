@@ -2,26 +2,108 @@
 
 ## Table of Contents
 1. [Overview](#overview)
-2. [Architectural-Overview](#architectural-overview)
-2. [Architectural Details](#architectural-details)
-3. [Step-by-Step Data Flow](#step-by-step-data-flow)
-4. [Classification Mechanism](#classification-mechanism)
-5. [Training Process](#training-process)
-6. [Implementation Details](#implementation-details)
+2. [Dataset]
+3. [Architectural-Overview](#architectural-overview)
+4. [Architectural Details](#architectural-details)
+5. [Step-by-Step Data Flow](#step-by-step-data-flow)
+6. [Classification Mechanism](#classification-mechanism)
+7. [Training Process](#training-process)
+8. [Implementation Details](#implementation-details)
 
 ## Overview
-MemeCLIP is a multimodal framework that leverages CLIP's pre-trained knowledge for comprehensive meme analysis. It supports multiple classification tasks:
+MemeCLIP is a multimodal framework that leverages OpenAI CLIP's pre-trained knowledge for comprehensive meme analysis. It supports multiple classification tasks:
 - Humor Detection (Binary)
 - Hate Speech Detection (Binary)
 - Target Classification (4 classes)
 - Stance Classification (3 classes)
 
 
+# Dataset
+
+Used PrideMM dataset, a collection of memes annotated for various tasks such as hate speech detection, target identification, stance classification, and humor recognition.
+
+# Directory Organization
+```
+CopyPrideMM/
+├── Images/
+│   ├── meme1.jpg
+│   ├── meme2.jpg
+│   └── ...
+├── checkpoints/
+│   └── model.ckpt
+└── PrideMM.csv
+```
+## Data Format
+
+The `PrideMM.csv` file contains rich annotations with the following columns:
+
+| Column | Description                                        |
+|--------|----------------------------------------------------|
+| name   | Image filename (str)                               |
+| text   | Meme text content (str)                            |
+| split  | Dataset split designation (str: 'train'/'val'/'test') |
+| humour | Binary humor label (int: 0/1)                     |
+| hate   | Binary hate speech label (int: 0/1)                |
+| target | Target classification (int: 0-3)                   |
+|        | - 0: No particular target                          |
+|        | - 1: Individual                                    |
+|        | - 2: Community                                     |
+|        | - 3: Organization                                  |
+| stance | Stance classification (int: 0-2)                   |
+|        | - 0: Neutral                                       |
+|        | - 1: Support                                       |
+|        | - 2: Oppose                                        |
+
+## Class Distribution
+
+The PrideMM dataset consists of 5,063 samples for most tasks, with the following distribution:
+
+### Hate Speech Classification
+
+| Class     | Samples | Percentage |
+|-----------|---------|------------|
+| No Hate   | 2,581   | 50.97%     |
+| Hate      | 2,482   | 49.03%     |
+
+Nearly balanced distribution, indicating natural occurrence of hate speech in memes.
+
+### Target Classification
+
+*Note: Only includes 2,482 samples (subset where hate=1)*
+
+| Class         | Samples | Percentage |
+|---------------|---------|------------|
+| Undirected    | 771     | 31.07%     |
+| Individual    | 249     | 10.03%     |
+| Community     | 1,164   | 46.90%     |
+| Organization  | 298     | 12.00%     |
+
+Shows significant imbalance, with community-targeted content being most prevalent.
+
+### Stance Classification
+
+| Class   | Samples | Percentage |
+|---------|---------|------------|
+| Neutral | 1,458   | 28.80%     |
+| Support | 1,909   | 37.70%     |
+| Oppose  | 1,696   | 33.50%     |
+
+Relatively balanced tripartite distribution.
+
+### Humor Classification
+
+| Class     | Samples | Percentage |
+|-----------|---------|------------|
+| No Humor  | 1,642   | 32.43%     |
+| Humor     | 3,421   | 67.57%     |
+
+Notable imbalance favoring humorous content.
+
 ## Architectural Overview
 
 To provide a clear visual understanding of the MemeCLIP framework, the following diagram illustrates the step-by-step data flow and key components of the architecture:
 
-![MemeCLIP Architecture](Image/memeclip_architecture.png)
+![MemeCLIP Architecture](Img/memeclip_architecture.png)
 
 #### Key Components Highlighted:
 
