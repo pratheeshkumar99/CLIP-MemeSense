@@ -35,6 +35,7 @@ class MemeDataset(Dataset):
         # Get text
         text = row['text'] if row['text'] != 'None' else 'null'
         
+        # Will return a dictionary of the image, text, label, and meme index
         return {
             'image': image,
             'text': text,
